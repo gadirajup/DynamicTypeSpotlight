@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ViewController: UITableViewController {
     
@@ -29,6 +30,15 @@ class ViewController: UITableViewController {
         projects.append(["Project 7: Whitehouse Petitions", "JSON, Data, UITabBarController"])
         projects.append(["Project 8: 7 Swifty Words", "addTarget(), enumerated(), count, index(of:), property observers, range operators."])
     }
+    
+    func showProject(_ id: Int) {
+        let urlString = "https://www.hackingwithswift.com/read/\(id+1)"
+        
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL(string: urlString)!, configuration: config)
+        present(svc, animated: true)
+    }
 }
 
 extension ViewController {
@@ -44,6 +54,10 @@ extension ViewController {
         
         cell.textLabel?.attributedText = attributedString
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showProject(indexPath.row)
     }
 }
 
