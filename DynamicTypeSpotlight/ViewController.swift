@@ -38,7 +38,11 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(projects[indexPath.row][0]) - \(projects[indexPath.row][1])"
+        
+        let attributedString = NSMutableAttributedString(string: "\(projects[indexPath.row][0])\n", attributes: [NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.red])
+        attributedString.append(NSAttributedString(string: projects[indexPath.row][1], attributes: [NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: .subheadline)]))
+        
+        cell.textLabel?.attributedText = attributedString
         return cell
     }
 }
