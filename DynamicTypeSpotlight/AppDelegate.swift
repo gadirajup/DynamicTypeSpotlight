@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
                 if let navigationController = window?.rootViewController as? UINavigationController {
                     if let viewController = navigationController.topViewController as? ViewController {
-                        viewController.select(Int(uniqueIdentifier)!)
+                        viewController.showProject(Int(uniqueIdentifier)!)
                     }
                 }
             }
